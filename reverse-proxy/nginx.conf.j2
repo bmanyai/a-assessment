@@ -1,0 +1,15 @@
+events {}
+
+http {
+    upstream services {
+        {{ my-servers }}
+     }
+
+     server {
+         listen 80;
+         {{ my-server-domain-name }}
+         location / {
+              proxy_pass http://services;
+          }
+     }
+}
